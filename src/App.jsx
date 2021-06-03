@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export function App() {
+  // define STATE and setSTATE of the value of the computed total
+  const [total, setTotal] = useState(100)
+
+  function handleAC() {
+    setTotal(0)
+  }
+
   return (
     <main>
       <div className="calculator">
-        <div className="display">0</div>
+        <div className="display">{total}</div>
         <div className="buttons">
-          <button className="button fn">AC</button>
+          <button className="button fn" onClick={handleAC}>
+            AC
+          </button>
           <button className="button fn">&plusmn;</button>
           <button className="button fn">%</button>
           <button className="button op">&divide;</button>
@@ -22,7 +31,7 @@ export function App() {
           <button className="button">2</button>
           <button className="button">3</button>
           <button className="button op">+</button>
-          <button className="button x2">0</button>
+          <button className="button x2">1</button>
           <button className="button">.</button>
           <button className="button op">=</button>
         </div>
