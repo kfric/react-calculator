@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 
 export function App() {
   // define STATE and setSTATE of the value of the computed total
-  const [total, setTotal] = useState(55)
-  const [number, setNumber] = useState({ total })
+  const [total, setTotal] = useState(0)
 
   function handleAC() {
     setTotal(0)
   }
 
   function handleNumClick(event) {
-    console.log(event.target.value)
+    setTotal(total + event.target.value)
   }
 
   return (
