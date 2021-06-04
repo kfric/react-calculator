@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 
 export function App() {
   // define STATE and setSTATE of the value of the computed total
-  const [display, setDisplay] = useState('')
-  const [storedNumber, setStoredNumber] = useState('')
+  const [display, setDisplay] = useState(0)
+  const [storedNumber, setStoredNumber] = useState(0)
   const [operator, setOperator] = useState('')
 
   function handleClear() {
-    setDisplay('0')
-    setStoredNumber('')
+    setDisplay(0)
+    setStoredNumber(0)
     setOperator('')
   }
 
@@ -17,13 +17,13 @@ export function App() {
   }
 
   function handleOperator() {
-    setStoredNumber(display)
-    setDisplay('')
+    setStoredNumber(parseInt(display))
+    setDisplay(0)
   }
 
   function handleEqual() {
     // switch statement to handle different operators
-    setDisplay(storedNumber + display)
+    setDisplay(parseInt(storedNumber) + parseInt(display))
 
     console.log(`display:${display}`)
     console.log(`storedNumber: ${storedNumber}`)
