@@ -15,7 +15,6 @@ export function App() {
   function handleNumClick(event) {
     setDisplay(display + event.target.value)
   }
-
   function handleOperator(event) {
     setStoredNumber(parseInt(display))
     setDisplay(0)
@@ -36,10 +35,15 @@ export function App() {
         case '*':
           setDisplay(parseInt(storedNumber) * parseInt(display))
           break
+        case '/':
+          setDisplay(parseInt(storedNumber) / parseInt(display))
+          break
         default:
           break
       }
     }
+    console.log(`stored number: ${storedNumber}`)
+    console.log(`display number: ${display}`)
   }
 
   return (
@@ -52,7 +56,9 @@ export function App() {
           </button>
           <button className="button fn">&plusmn;</button>
           <button className="button fn">%</button>
-          <button className="button op">&divide;</button>
+          <button className="button op" onClick={handleOperator}>
+            /
+          </button>
           <button className="button" value={7} onClick={handleNumClick}>
             7
           </button>
@@ -62,7 +68,9 @@ export function App() {
           <button className="button" value={9} onClick={handleNumClick}>
             9
           </button>
-          <button className="button op">*</button>
+          <button className="button op" onClick={handleOperator}>
+            *
+          </button>
           <button className="button" value={4} onClick={handleNumClick}>
             4
           </button>
