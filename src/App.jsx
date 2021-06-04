@@ -16,17 +16,30 @@ export function App() {
     setDisplay(display + event.target.value)
   }
 
-  function handleOperator() {
+  function handleOperator(event) {
     setStoredNumber(parseInt(display))
     setDisplay(0)
+    setOperator(event.target.textContent)
   }
 
   function handleEqual() {
     // switch statement to handle different operators
-    setDisplay(parseInt(storedNumber) + parseInt(display))
-
-    console.log(`display:${display}`)
-    console.log(`storedNumber: ${storedNumber}`)
+    // setDisplay(parseInt(storedNumber) + parseInt(display))
+    if (display && storedNumber) {
+      switch (operator) {
+        case '+':
+          setDisplay(parseInt(storedNumber) + parseInt(display))
+          break
+        case '-':
+          setDisplay(parseInt(storedNumber) - parseInt(display))
+          break
+        case '*':
+          setDisplay(parseInt(storedNumber) * parseInt(display))
+          break
+        default:
+          break
+      }
+    }
   }
 
   return (
@@ -49,7 +62,7 @@ export function App() {
           <button className="button" value={9} onClick={handleNumClick}>
             9
           </button>
-          <button className="button op">&times;</button>
+          <button className="button op">*</button>
           <button className="button" value={4} onClick={handleNumClick}>
             4
           </button>
@@ -59,7 +72,9 @@ export function App() {
           <button className="button" value={6} onClick={handleNumClick}>
             6
           </button>
-          <button className="button op">&minus;</button>
+          <button className="button op" onClick={handleOperator}>
+            -
+          </button>
           <button className="button" value={1} onClick={handleNumClick}>
             1
           </button>
