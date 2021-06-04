@@ -2,22 +2,39 @@ import React, { useState } from 'react'
 
 export function App() {
   // define STATE and setSTATE of the value of the computed total
-  const [total, setTotal] = useState(0)
+  const [display, setDisplay] = useState('')
+  const [storedNumber, setStoredNumber] = useState('')
+  const [operator, setOperator] = useState('')
 
-  function handleAC() {
-    setTotal(0)
+  function handleClear() {
+    setDisplay('0')
+    setStoredNumber('')
+    setOperator('')
   }
 
   function handleNumClick(event) {
-    setTotal(total + event.target.value)
+    setDisplay(display + event.target.value)
+  }
+
+  function handleOperator() {
+    setStoredNumber(display)
+    setDisplay('')
+  }
+
+  function handleEqual() {
+    // switch statement to handle different operators
+    setDisplay(storedNumber + display)
+
+    console.log(`display:${display}`)
+    console.log(`storedNumber: ${storedNumber}`)
   }
 
   return (
     <main>
       <div className="calculator">
-        <div className="display">{total}</div>
+        <div className="display">{display}</div>
         <div className="buttons">
-          <button className="button fn" onClick={handleAC}>
+          <button className="button fn" onClick={handleClear}>
             AC
           </button>
           <button className="button fn">&plusmn;</button>
@@ -52,12 +69,16 @@ export function App() {
           <button className="button" value={3} onClick={handleNumClick}>
             3
           </button>
-          <button className="button op">+</button>
+          <button className="button op" onClick={handleOperator}>
+            +
+          </button>
           <button className="button x2" value={0} onClick={handleNumClick}>
             0
           </button>
           <button className="button">.</button>
-          <button className="button op">=</button>
+          <button className="button op" onClick={handleEqual}>
+            =
+          </button>
         </div>
       </div>
     </main>
